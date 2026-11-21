@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#100d2b">
+<title>A Little Birthday Memory for Clarie ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+:root{--cream:#fff8ec;--gold:#ffdca8;--rose:#ff9fb5;--lav:#cdbbff;--blue:#9ddcff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Montserrat,sans-serif;color:#fff;background:radial-gradient(circle at 15% 15%,rgba(255,159,181,.22),transparent 32%),radial-gradient(circle at 85% 20%,rgba(157,220,255,.18),transparent 30%),radial-gradient(circle at 60% 90%,rgba(205,187,255,.20),transparent 35%),linear-gradient(135deg,#090b25,#171333 48%,#09182d);}
+#stars{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.star{position:absolute;color:rgba(255,248,236,.8);animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+.orb{position:fixed;width:190px;height:190px;border-radius:50%;filter:blur(65px);opacity:.28;pointer-events:none;animation:float 9s ease-in-out infinite alternate}
+.o1{background:#ff9fb5;left:-60px;top:5%}.o2{background:#cdbbff;right:-70px;bottom:8%;animation-delay:2s}.o3{background:#9ddcff;left:35%;bottom:-110px;animation-delay:4s}
+@keyframes float{to{transform:translate3d(24px,-18px,0) scale(1.08)}}
+header{position:fixed;top:0;left:0;width:100%;height:58px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,7,25,.22);backdrop-filter:blur(14px);z-index:10}
+.brand{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.58)}
+.sound{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;width:38px;height:32px;cursor:pointer}
+main{width:100%;height:100dvh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:66px 14px 28px}
+.card{display:none;width:min(92vw,430px);max-height:min(82dvh,680px);overflow:auto;scrollbar-width:none;padding:clamp(22px,6vw,38px) clamp(18px,6vw,30px);border:1px solid rgba(255,235,245,.18);border-radius:32px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.055));backdrop-filter:blur(25px);box-shadow:0 28px 90px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.08)}
+.card::-webkit-scrollbar{display:none}.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.43);margin-bottom:12px}
+.title{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(40px,11vw,58px);line-height:.9;margin:0;background:linear-gradient(90deg,#fff,var(--gold),var(--rose),var(--lav),#fff);background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+.subtitle{font-size:clamp(12px,3.5vw,15px);line-height:1.7;color:rgba(255,255,255,.68);margin:14px 0 0}
+@keyframes shine{to{background-position:250% center}}
+.emoji{font-size:48px;margin-bottom:8px;filter:drop-shadow(0 0 18px rgba(255,200,220,.35))}
+.btn{border:0;margin-top:22px;padding:13px 23px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#17101d;background:linear-gradient(135deg,#ffe0ad,#ff9fb5 50%,#cdbbff);box-shadow:0 10px 30px rgba(255,159,181,.18);cursor:pointer;transition:.2s}
+.btn:active{transform:scale(.96)}
+.message{width:100%;max-height:42dvh;overflow:auto;text-align:left;padding:18px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);font-size:13px;line-height:1.9;color:rgba(255,255,255,.82);white-space:pre-line;scrollbar-width:thin}
+.signature{margin-top:18px;color:rgba(255,220,190,.85);font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic}
+.progress{position:fixed;top:57px;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--rose),var(--lav));box-shadow:0 0 15px var(--rose);z-index:20;transition:width .6s ease}
+.note{font-size:10px;color:rgba(255,255,255,.38);margin-top:13px}
+@media(max-height:700px){main{padding-top:58px;padding-bottom:14px}.card{max-height:84dvh;padding:20px 17px}.title{font-size:42px}.emoji{font-size:38px}.message{max-height:38dvh}.btn{margin-top:15px}}
+@media(max-width:380px){.card{width:94vw;border-radius:25px}.title{font-size:37px}.subtitle{font-size:11px}.message{font-size:11.5px;line-height:1.75}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<header><span class="brand">A little something ✦</span><button class="sound" id="soundBtn" aria-label="Toggle music">♫</button></header>
+<div class="progress" id="progress"></div>
+<main>
+<section id="s1" class="card active">
+<div class="emoji">🌷</div><div class="eyebrow">A tiny birthday surprise</div>
+<h1 class="title">Hey Clarie ✨</h1>
+<p class="subtitle">I made this little corner of the internet because a normal “happy birthday” somehow felt too ordinary.</p>
+<button class="btn" onclick="begin()">Open your surprise</button><div class="note">Take your time. There’s no rush.</div>
+</section>
+<section id="s2" class="card">
+<div class="emoji">🌙</div><div class="eyebrow">No tests. No awkwardness.</div>
+<h1 class="title" style="font-size:clamp(34px,9vw,48px)">Just a little moment</h1>
+<p class="subtitle">For a few days, I’ve noticed your account and thought you seemed like someone I’d genuinely enjoy knowing. I just never knew how to start a conversation naturally.</p>
+<button class="btn" onclick="go(3,50)">Keep going ✦</button>
+</section>
+<section id="s3" class="card">
+<div class="emoji">💫</div><div class="eyebrow">So I found my excuse</div>
+<h1 class="title" style="font-size:clamp(34px,9vw,48px)">Today felt perfect.</h1>
+<p class="subtitle">Your birthday gave me the simplest reason to finally say hello — without making it complicated, serious, or awkward.</p>
+<p class="note">And honestly… I hope this makes you smile.</p>
+<button class="btn" onclick="go(4,75)">There’s a little more 💌</button>
+</section>
+<section id="s4" class="card">
+<div class="emoji">🎂</div><div class="eyebrow">A birthday wish, just for you</div>
+<h1 class="title" style="font-size:clamp(32px,8vw,44px);margin-bottom:15px">Dear Clarie,</h1>
+<div class="message" id="message"></div><div class="signature">— from someone who hopes this becomes a nice little memory ✨</div>
+<button class="btn" id="finalBtn" style="opacity:0;pointer-events:none" onclick="go(5,100)">One last little surprise</button>
+</section>
+<section id="s5" class="card">
+<div class="emoji">🎀</div><div class="eyebrow">The last page</div>
+<h1 class="title">Happy Birthday, Clarie ✨</h1>
+<p class="subtitle">I hope this year gives you beautiful places to go, wonderful people to meet, quiet moments to enjoy, and lots of reasons to smile.</p>
+<div id="finalText" class="note" style="font-size:12px;line-height:1.8;margin-top:18px">And if you ever feel like talking, I’d genuinely love to know you. No pressure — just a hello. 🌷</div>
+<button class="btn" onclick="celebrate()">Make the memory ✨</button>
+</section>
+</main>
+<audio id="music" loop preload="auto"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg"></audio>
+<script>
+gsap.registerPlugin(TextPlugin);
+const music=document.getElementById('music'); music.volume=.28;
+function stars(){for(let i=0;i<28;i++){const e=document.createElement('span');e.className='star';e.textContent=i%4?'✦':'✧';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.fontSize=(7+Math.random()*9)+'px';e.style.animationDelay=(Math.random()*3)+'s';document.getElementById('stars').appendChild(e)}}
+stars();
+function playMusic(){music.play().catch(()=>{});document.getElementById('soundBtn').textContent='♫'}
+document.getElementById('soundBtn').onclick=()=>{if(music.paused){playMusic()}else{music.pause();document.getElementById('soundBtn').textContent='×'}};
+function go(n,p){const cur=document.querySelector('.active'),next=document.getElementById('s'+n);document.getElementById('progress').style.width=p+'%';gsap.to(cur,{opacity:0,y:-16,scale:.97,duration:.3,onComplete:()=>{cur.classList.remove('active');next.classList.add('active');gsap.fromTo(next,{opacity:0,y:16,scale:1.02},{opacity:1,y:0,scale:1,duration:.45});if(n===4)typeMessage()}})}
+function begin(){playMusic();go(2,25)}
+function typeMessage(){if(document.getElementById('message').dataset.done)return;document.getElementById('message').dataset.done='1';const msg=`Happy birthday, Clarie 🎂✨
+
+I hope this little surprise made you smile. I’ve been meaning to say hello for a while, but I honestly didn’t know how to approach you without making it feel random or awkward.
+
+So I thought… maybe a birthday is the perfect little moment to change that.
+
+I don’t want this to come with any pressure or expectations. I’d simply like to know you, have a few good conversations, and see where a genuine hello takes us.
+
+For today, though, I just hope you have a beautiful birthday, plenty of reasons to smile, and a year that gives you more moments worth remembering. 🌷✨`;
+gsap.to('#message',{duration:10,text:msg,ease:'none',onComplete:()=>{gsap.to('#finalBtn',{opacity:1,pointerEvents:'auto',duration:.5})}})}
+function celebrate(){const end=Date.now()+6500;document.getElementById('finalText').textContent='Some surprises are small, but the feeling behind them can stay for a while. ✨';(function f(){confetti({particleCount:5,spread:70,origin:{x:Math.random(),y:.75},colors:['#ffe0ad','#ff9fb5','#cdbbff','#9ddcff']});if(Date.now()<end)requestAnimationFrame(f)})()}
+</script>
+</body>
+</html>
